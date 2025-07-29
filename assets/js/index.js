@@ -1,13 +1,9 @@
 document.addEventListener('DOMContentLoaded', () =>{
-    console.log("Conteúdo carregado!");
-
-    // Vamos pegar o clique do botão do form
     const form = document.getElementById('form--idade');
 
     form.addEventListener('submit', (e) => {
         e.preventDefault();
 
-        // Temos que pegar o valor do input data;
         const inputData = document.getElementById('dataNascimento');
         const containerRes = document.getElementById('res');
 
@@ -15,14 +11,19 @@ document.addEventListener('DOMContentLoaded', () =>{
         const dataAtual = new Date();
 
         if(inputData.value == "" || dataNascimento > dataAtual) {
-            containerRes.innerHTML = `
-                <div class="container--warning container--aviso">
-                    <p>Por favor, insira a sua data de nascimento.</p>
-                </div>
-            `;              
+            containerRes.innerHTML = exibeMensagem(0, "msg--fracasso");             
             return;       
         };
         
+        const resultado = calcularIdade(dataAtual, dataNascimento);
+        containerRes.innerHTML = exibeMensagem(resultado, "msg--sucesso");
+
+        const totalDeDias = totalDeDiasVividos(dataAtual, dataNascimento);
+        containerRes.innerHTML += exibeMensagem(totalDeDias, "msg--vividos");
+
+    });
+
+    function calcularIdade(dataAtual, dataNascimento) {
         let anoNascimento = dataNascimento.getFullYear();
         let mesNascimento = dataNascimento.getMonth();
         let diaNascimento = dataNascimento.getDate();
@@ -31,7 +32,6 @@ document.addEventListener('DOMContentLoaded', () =>{
         let mesAtual = dataAtual.getMonth();
         let diaAtual = dataAtual.getDate();      
         
-        // Calculo de idade
         if(diaAtual < diaNascimento) {
             mesAtual--;
 
@@ -48,20 +48,40 @@ document.addEventListener('DOMContentLoaded', () =>{
         let mes = mesAtual - mesNascimento;        
         let ano = anoAtual - anoNascimento;
 
-        containerRes.innerHTML = `
-            <div class="container--resultado container--aviso">
-                <p>Você tem ${ano} anos, ${mes} meses e ${dia} dias.</p>
-            </div>
-        `;
+        return {ano: ano, mes: mes, dia: dia};
+    }
 
-        // Total Dias vividos
+    function totalDeDiasVividos(dataAtual, dataNascimento) {
         const diferencaEmMilissegundos = dataAtual.getTime() - dataNascimento.getTime();
 
         const milissigundosPorDia = 1000 * 60 * 60 * 24;
 
-        const totalDeDias = Math.floor(diferencaEmMilissegundos / milissigundosPorDia);
+        const resultado = Math.floor(diferencaEmMilissegundos / milissigundosPorDia);
 
-        console.log("Total de dias vividos: " + totalDeDias);
+        return resultado;
+    }
 
-    });
+    function exibeMensagem(obj, tipoMensagem) {
+        if(tipoMensagem === "msg--fracasso"){
+            return `
+                <div class="container--fracasso container--aviso">
+                    <p>Por favor, insira a sua data de nascimento.</p>
+                </div>
+            `; 
+        }
+        else if(tipoMensagem === "msg--sucesso") {
+            return `
+                <div class="container--sucesso container--aviso">
+                    <p>Você tem ${obj.ano} anos, ${obj.mes} meses e ${obj.dia} dias.</p>
+                </div>
+            `
+        }
+        else if(tipoMensagem === "msg--vividos") {
+            return `
+                <div class="container--sucesso container--aviso">
+                    <p>Você viveu ${obj} dias até agora!</p>
+                </div>
+            `;
+        };
+    };
 });

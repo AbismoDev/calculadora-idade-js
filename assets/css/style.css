@@ -1,19 +1,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
-*{
+* {
     font-family: "Montserrat", sans-serif;
     box-sizing: border-box;
     padding: 0;
     margin: 0;
 }
 
-body{
+body {
     background-color: burlywood;
     min-height: 100vh;
     width: 100vw;
 }
 
-.container{
+.container {
     justify-content: center;
     flex-direction: column;
     align-items: center;
@@ -25,7 +25,7 @@ body{
     gap: 20px;
 }
 
-.container--app{
+.container--app {
     background-color: antiquewhite;
     border: 1px solid gray;
     flex-direction: column;
@@ -37,14 +37,14 @@ body{
     gap: 20px;
 }
 
-.container--app h1{
+.container--app h1 {
     border-bottom: 1px solid gray;
     padding-bottom: 15px;
     text-align: center;
     width: 100%;
 }
 
-.container--app form{
+.container--app form {
     flex-direction: column;
     align-items: center;
     display: flex;
@@ -52,7 +52,7 @@ body{
     gap: 15px;
 }
 
-.container--input{
+.container--input {
     flex-direction: column;
     max-width: 200px;
     display: flex;
@@ -60,44 +60,51 @@ body{
     gap: 5px;
 }
 
-.container--input label{
+.container--input label {
     text-align: center;
     font-weight: 600;
     font-size: 17px;
 }
 
-.input--data{
+.input--data {
     text-align: center;
     cursor: pointer;
     font-size: 16px;
     height: 35px;
 }
 
-.input--data:focus{
+.input--data:focus {
     outline: none;
 }
 
-.btn{
+.btn {
     max-width: 100px;
     cursor: pointer;
     height: 35px;
     width: 100%;
 }
 
-.container--aviso{    
+.container--aviso {    
     border-radius: 6px;
+    text-align: center;
     padding: 10px 15px;
     font-weight: 600;
 }
 
-.container--warning{
+.container--fracasso {
     background-color: rgb(255, 160, 160);
     border: 1px solid rgb(209, 0, 0);
     color: rgb(209, 0, 0);
 }
 
-.container--resultado{
+.container--sucesso {
     background-color: rgb(120, 255, 120);
     border: 1px solid rgb(0, 168, 0);
     color: rgb(0, 168, 0);
+}
+
+.container--resultado {
+    flex-direction: column;
+    display: flex;
+    gap: 10px;
 }
