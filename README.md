@@ -16,7 +16,7 @@
 - ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
 
 ## 🖼️ Screenshot
-![Screenshot da Aplicação](/assets/img/screenshot.png)
+![Screenshot da Aplicação](assets/img/screenshot.png)
 
 ## 🔗 Links
 - **Deploy:** [Projeto no Vercel](https://calculadora-idade-js.vercel.app/)
